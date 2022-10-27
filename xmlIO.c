@@ -744,7 +744,7 @@ static int
 xmlFdRead (void * context, char * buffer, int len) {
     int ret;
 
-    ret = read((int) (ptrdiff_t) context, &buffer[0], len);
+    ret = _read((int) (ptrdiff_t) context, &buffer[0], len);
     if (ret < 0) xmlIOErr(0, "read()");
     return(ret);
 }
@@ -765,7 +765,7 @@ xmlFdWrite (void * context, const char * buffer, int len) {
     int ret = 0;
 
     if (len > 0) {
-	ret = write((int) (ptrdiff_t) context, &buffer[0], len);
+	ret = _write((int) (ptrdiff_t) context, &buffer[0], len);
 	if (ret < 0) xmlIOErr(0, "write()");
     }
     return(ret);
@@ -783,7 +783,7 @@ xmlFdWrite (void * context, const char * buffer, int len) {
 static int
 xmlFdClose (void * context) {
     int ret;
-    ret = close((int) (ptrdiff_t) context);
+    ret = _close((int) (ptrdiff_t) context);
     if (ret < 0) xmlIOErr(0, "close()");
     return(ret);
 }
